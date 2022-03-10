@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 import pyjoycon
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import concurrent.futures
