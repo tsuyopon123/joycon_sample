@@ -5,6 +5,7 @@ import concurrent.futures
 
 port = 8080
 
+
 class GetJoyCon(BaseHTTPRequestHandler):
     def do_GET(self):
 
@@ -19,11 +20,14 @@ class GetJoyCon(BaseHTTPRequestHandler):
         out = f"{{x: {joycon.rotation[0]},y: {joycon.rotation[1]},z: {joycon.rotation[2]}}}"
         self.wfile.write(bytes(out.encode('utf-8')))
 
+
 class MyJoyCon(
         pyjoycon.GyroTrackingJoyCon,
         pyjoycon.ButtonEventJoyCon,
         pyjoycon.JoyCon
-    ): pass
+        ):
+    pass
+
 
 def webserver():
     # LED 点滅
@@ -43,11 +47,13 @@ def webserver():
     print("Server stopped.")
     exit(0)
 
+
 def button_events():
     while True:
         for event_type, status in joycon.events():
             print(event_type, status)
             joycon.reset_orientation()
+
 
 if __name__ == "__main__":
     joycon_id = pyjoycon.get_L_id()
